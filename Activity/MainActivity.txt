@@ -1,3 +1,8 @@
-private MainActivity extends Appcompat{
-	private int Stirialfdj= dsafjlojadsf lkfdsja kl
+public MainActivity extends Appcompat{
+  protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+   
+
+vgfgfgfgyf }
 }
