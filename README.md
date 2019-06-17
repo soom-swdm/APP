@@ -1,2 +1,2 @@
-# APP
-mobile app
+# SOOM
+min sdk : 19  
