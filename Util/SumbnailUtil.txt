@@ -1,2 +1,4 @@
-public static void main(){
+private static void main(){
+ private int PI = 3.14;
+
 }
