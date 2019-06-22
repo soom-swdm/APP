@@ -1,4 +1,4 @@
-package io.github.swdm.soom;
+package org.androidtown.seoulsoom;
 
 import org.junit.Test;
 

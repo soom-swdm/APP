@@ -1,4 +1,4 @@
-package io.github.swdm.soom;
+package org.androidtown.seoulsoom;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("io.github.swdm.soom", appContext.getPackageName());
+        assertEquals("org.androidtown.seoulsoom", appContext.getPackageName());
     }
 }
