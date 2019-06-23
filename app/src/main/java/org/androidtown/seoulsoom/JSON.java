@@ -3,6 +3,10 @@ package org.androidtown.seoulsoom;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -15,11 +19,13 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
+
 //JSONTask().execute("http://54.180.81.90:3000/method");
-public class JSON extends AsyncTask<String, String, String> {
+public class JSON extends AsyncTask<String, String, JsonElement> {
     JSONObject jsonObject = new JSONObject();
     @Override
-    protected String doInBackground(String... urls) {
+    protected JsonElement doInBackground(String... urls) {
         try {
             //JSONObject를 만들고 key value 형식으로 값을 저장해준다.
             HttpURLConnection con = null;
@@ -57,10 +63,9 @@ public class JSON extends AsyncTask<String, String, String> {
                 String line = "";
                 while((line = reader.readLine()) != null) {
                     buffer.append(line);
-                    Log.v("soom", line);
                 }
                 Log.v("soom",buffer.toString());
-                return buffer.toString();//서버로 부터 받은 값을 리턴해줌 아마 OK!!가 들어올것임
+                return new JsonParser().parse(buffer.toString());//서버로 부터 받은 값을 리턴해줌 아마 OK!!가 들어올것임
             } catch (MalformedURLException e){
                 e.printStackTrace();
             } catch (IOException e) {
@@ -83,15 +88,19 @@ public class JSON extends AsyncTask<String, String, String> {
         return null;
     }
     @Override
-    protected void onPostExecute(String result) {
+    protected void onPostExecute(JsonElement result) {
         super.onPostExecute(result);
-        Log.v("soom",result);
     }
-    public void setJsonObject(JSONObject object){
-        jsonObject = object;
-    }
-    public JSONObject getJsonObject(){
-        return jsonObject;
+    public JsonElement PostURL(String str,JSONObject json){
+        try {
+            jsonObject=json;
+            JsonElement result=this.execute(str).get();
+             return result;
+        }catch (ExecutionException e) {
+            e.printStackTrace();
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
-

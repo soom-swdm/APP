@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.gson.JsonElement;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
@@ -47,22 +48,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        JSON json=new JSON();
-        JSONObject jsonObject = new JSONObject();
+
+
+        // JSON오브젝트 받아오기
         try {
+            JSON json=new JSON();
+            JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("ID", "test1");
             jsonObject.accumulate("name", "test1");
             jsonObject.accumulate("password", "test1");
-            json.setJsonObject(jsonObject);
-            String result=json.execute("http://54.180.81.90:3000/UserInform").get();
-            Log.v("soom",result);
+            JsonElement result=json.PostURL("http://54.180.81.90:3000/UserInform",jsonObject);
+            Log.v("soom",result.getAsString());
         } catch (JSONException e) {
             e.printStackTrace();
-        }catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
+
         //QR code creation
         //Todo : user id?
         ImageView qr = (ImageView)findViewById(R.id.QR_image);
