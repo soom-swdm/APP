@@ -1,13 +1,20 @@
 package org.androidtown.seoulsoom;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +41,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        //QR code creation
+        //Todo : user id?
+        ImageView qr = (ImageView)findViewById(R.id.QR_image);
+        String id = "SOOMUserID";
+
+        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+        try{
+            BitMatrix bitMatrix = multiFormatWriter.encode(id, BarcodeFormat.QR_CODE, 170,170);
+            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+            qr.setImageBitmap(bitmap);
+        }catch (Exception e){}
+
+
     }
 
 
