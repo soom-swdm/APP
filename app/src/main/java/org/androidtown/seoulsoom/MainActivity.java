@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,11 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +47,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+        JSON json=new JSON();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.accumulate("ID", "test1");
+            jsonObject.accumulate("name", "test1");
+            jsonObject.accumulate("password", "test1");
+            json.setJsonObject(jsonObject);
+            String result=json.execute("http://54.180.81.90:3000/UserInform").get();
+            Log.v("soom",result);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         //QR code creation
         //Todo : user id?
         ImageView qr = (ImageView)findViewById(R.id.QR_image);
@@ -81,11 +102,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
-
-
-
-
-
-
 }
