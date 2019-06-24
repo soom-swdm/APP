@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+        //login 버튼 눌렀을때
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
