@@ -2,7 +2,7 @@
 mobile app
 ## 서버랑 통신하는법
 
-### 1.	JSON 객체 생성
+### 1.	JSON 객체 생성 (JSON.java) 
 	
 ```java
 JSON json = new JSON() ;
