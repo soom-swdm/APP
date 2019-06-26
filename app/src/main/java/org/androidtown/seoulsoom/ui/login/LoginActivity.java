@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginViewModel.getLoginResult().observe(this, new Observer<LoginResult>() {
+            String userName =usernameEditText.getText().toString();
             @Override
             public void onChanged(@Nullable LoginResult loginResult) {
                 if (loginResult == null) {
@@ -66,8 +67,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getError() != null) {
                     showLoginFailed(loginResult.getError());
                 }
+                //로그인 결과 성공시 UdateUiWithUser 호출
                 if (loginResult.getSuccess() != null) {
-                    updateUiWithUser(loginResult.getSuccess());
+                    updateUiWithUser(loginResult.getSuccess(),userName);
                 }
                 setResult(Activity.RESULT_OK);
 
@@ -117,8 +119,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
+    private void updateUiWithUser(LoggedInUserView model, String userName) {
+        String welcome = getString(R.string.welcome) + userName;//model.getDisplayName();
+
         // TODO : initiate successful logged in experience
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);

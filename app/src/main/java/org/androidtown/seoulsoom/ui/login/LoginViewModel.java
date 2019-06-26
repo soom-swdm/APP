@@ -28,6 +28,7 @@ public class LoginViewModel extends ViewModel {
         return loginResult;
     }
 
+    //로그인 버튼 눌렸을 때 username과 password를 넘겨 받아 시행되는 부분
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
         Result<LoggedInUser> result = loginRepository.login(username, password);
