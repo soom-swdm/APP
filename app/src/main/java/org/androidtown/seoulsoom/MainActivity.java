@@ -50,23 +50,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        // JSON오브젝트 받아오기
-        try {
-            JSON json=new JSON();
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("ID", "test1");
-            jsonObject.accumulate("name", "test1");
-            jsonObject.accumulate("password", "test1");
-            JsonElement result=json.PostURL("http://54.180.81.90:3000/UserInform",jsonObject);
-            Log.v("soom",result.getAsString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        // JSON오브젝트 받아오기
+//        try {
+//            JSON json=new JSON();
+//            JSONObject jsonObject = new JSONObject();
+//            jsonObject.accumulate("ID", "test1");
+//            jsonObject.accumulate("name", "test1");
+//            jsonObject.accumulate("password", "test1");
+//            JsonElement result=json.PostURL("http://54.180.81.90:3000/UserInform",jsonObject);
+//            Log.v("soom",result.getAsString());
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
         //QR code creation
         //Todo : user id?
         ImageView qr = (ImageView)findViewById(R.id.QR_image);
-        String id = "SOOMUserID";
+        String id = "id2";
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try{
