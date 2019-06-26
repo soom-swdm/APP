@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.androidtown.seoulsoom">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <meta-data
+        android:name="preloaded_fonts"
+        android:resource="@array/preloaded_fonts" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,12 +15,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GuideItemViewActivity"></activity>
+
+        <activity android:name=".QrActivity" android:theme="@android:style/Theme.Dialog" />
+
+        <activity android:name=".GuideItemViewActivity" />
         <activity android:name=".GuideActivity" />
         <activity android:name=".history.HistoryItemView" />
         <activity android:name=".HistoryActivity" />
-        <activity android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"/>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <meta-data
-        android:name="preloaded_fonts"
-        android:resource="@array/preloaded_fonts" />
+
 </manifest>

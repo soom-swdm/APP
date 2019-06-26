@@ -3,6 +3,7 @@ package org.androidtown.seoulsoom;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TextView user_name_txtview, cur_point_txtview, next_level_txtview;
     ImageView cur_level_imgview, next_level_imgview;
     ProgressBar next_level_bar;
+    FloatingActionButton qr_btn;
 
     String user_Id;
 
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         apiService = retrofit.create(ApiService.class);
 
         user_Id = "id2";    //사용할 user ID
+
 
         Call<ResponseBody> list = apiService.postList();
         list.enqueue(new Callback<ResponseBody>() {
@@ -175,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
         guide_btn = (Button) findViewById(R.id.guide_btn);
         history_btn2=(ImageButton)findViewById(R.id.history_btn2);
         guide_btn2 = (ImageButton) findViewById(R.id.guide_btn2);
+        qr_btn = (FloatingActionButton) findViewById(R.id.qr_btn);
 
         history_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,6 +206,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), GuideActivity.class);
+                startActivity(i);
+            }
+        });
+        qr_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), QrActivity.class);
+                i.putExtra("ID", user_Id);
                 startActivity(i);
             }
         });
